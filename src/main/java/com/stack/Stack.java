@@ -5,7 +5,7 @@ public class Stack {
     int size;
 
     public Integer size() {
-        return 0;
+        return size;
     }
 
     public void push(int toPush) {
