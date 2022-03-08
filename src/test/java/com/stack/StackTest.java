@@ -13,6 +13,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class StackTest {
 
     private static final Object STACK_ITEM = 1;
+    private static final Object LAST_STACK_ITEM = 22;
     Stack stack;
 
     @BeforeEach
@@ -45,11 +46,16 @@ class StackTest {
         assertDoesNotThrow(() -> stack.push(STACK_ITEM));
     }
 
-    @Test
-    void pop_returns_last_item_pushed() {
-        stack.push(STACK_ITEM);
+    @ParameterizedTest
+    @ValueSource(ints = { 1, 2, 3, 4, 5 })
+    void pop_returns_last_item_pushed(int numberOfTimesToPush) {
+        for (int i = 0; i < numberOfTimesToPush - 1; i++) {
+            stack.push(STACK_ITEM);
+        }
 
-        assertEquals(STACK_ITEM, stack.pop());
+        stack.push(LAST_STACK_ITEM);
+
+        assertEquals(LAST_STACK_ITEM, stack.pop());
     }
 
 }
