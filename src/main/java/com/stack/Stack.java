@@ -1,25 +1,27 @@
 package com.stack;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Stack {
 
     int size;
-    Object pushedItem;
+    List<Object> items = new ArrayList<Object>();
 
     public Integer size() {
-        return size;
+        return items.size();
     }
 
     public void push(Object toPush) {
-        pushedItem = toPush;
-        size++;
+        items.add(toPush);
     }
 
     public Object pop() {
-        if (pushedItem == null) {
+        if (items.isEmpty()) {
             throw new IllegalStateException("Stack is empty");
         }
 
-        return pushedItem;
+        return items.remove(size() - 1);
     }
 
 }
