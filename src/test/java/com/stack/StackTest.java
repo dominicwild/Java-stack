@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class StackTest {
 
@@ -21,10 +23,14 @@ class StackTest {
         assertEquals(0, stack.size());
     }
 
-    @Test
-    void push_increases_size() {
-        stack.push(STACK_ITEM);
-        assertEquals(1, stack.size());
+    @ParameterizedTest
+    @ValueSource(ints = { 1, 2, 3, 4, 5 })
+    void push_increases_size(int numberOfTimesToPush) {
+        for (int i = 0; i < numberOfTimesToPush; i++) {
+            stack.push(STACK_ITEM);
+        }
+        
+        assertEquals(numberOfTimesToPush, stack.size());
     }
 
 }
