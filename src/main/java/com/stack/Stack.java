@@ -8,8 +8,12 @@ public class Stack {
         return size;
     }
 
-    public void push(int toPush) {
+    public void push(Object toPush) {
         size++;
+    }
+
+    public Object pop() {
+        throw new IllegalStateException("Stack is empty");
     }
     
 }
